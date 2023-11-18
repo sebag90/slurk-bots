@@ -99,6 +99,20 @@ class EchoBot(TaskBot):
 
     def register_callbacks(self):
         @self.sio.event
+        def text_message(data):
+            room_id = data["room"]
+            user_id = data["user"]["id"]
+            if self.user == user_id:
+                return
+
+            response = requests.patch(
+                f"{self.uri}/rooms/{room_id}/text/text_to_modify",
+                headers={"Authorization": f"Bearer {self.token}"},
+                json={"text": data["message"]}
+            )
+
+
+        @self.sio.event
         def command(data):
             if self.user == data["user"]["id"]:
                 return

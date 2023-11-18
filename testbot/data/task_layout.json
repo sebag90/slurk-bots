@@ -5,20 +5,30 @@
       "layout-type": "div",
       "class": "card",
       "layout-content": [
-          {
-            "layout-type": "input",
-            "id": "input_box"
-          },
-          {
-            "layout-type": "input",
-            "id": "result_box"
-          },
-          {
-            "layout-type": "button",
-            "class": "button",
-            "role": "button",
-            "layout-content": "submit",
-            "id": "submit"
+        {
+          "layout-type": "input",
+          "id": "input_box"
+        },
+        {
+          "layout-type": "input",
+          "id": "result_box"
+        },
+        {
+          "layout-type": "button",
+          "class": "button",
+          "role": "button",
+          "layout-content": "submit",
+          "id": "submit"
+        },
+        {
+          "layout-type": "hr",
+          "layout-content": "",
+          "style": "margin: 2px; background-color: #abb2b9; opacity: .50;"
+        },
+        {
+          "layout-type": "div",
+          "id": "text_to_modify",
+          "layout-content": "TEXT TO MODIFY"
         }
       ]
     }
