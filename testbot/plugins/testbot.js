@@ -16,9 +16,15 @@ $(document).ready(function () {
 
     socket.on("command", (data) => {
         if (typeof (data.command) === "object") {
-            if (data.command.event === "reset") {
-                $("#result_box").val("")
-                $("#input_box").val("")
+            switch(data.command.event){
+                case "reset":
+                    $("#result_box").val("")
+                    $("#input_box").val("")
+                    break;
+
+                case "color_text":
+                    $("#text_to_modify").html(data.command.message)
+                    break;
             }
         }
     });

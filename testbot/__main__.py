@@ -1,4 +1,5 @@
 import logging
+import random
 from threading import Timer
 
 import requests
@@ -105,10 +106,22 @@ class EchoBot(TaskBot):
             if self.user == user_id:
                 return
 
-            response = requests.patch(
-                f"{self.uri}/rooms/{room_id}/text/text_to_modify",
-                headers={"Authorization": f"Bearer {self.token}"},
-                json={"text": data["message"]}
+            color_message = ""
+
+            for word in data["message"].split():
+                color = random.choice(["green", "blue", "red"])
+                color_message += f'<a style="color:{color};">{word}</a> ' 
+
+            self.sio.emit(
+                "message_command",
+                {
+                    "command": {
+                        "event": "color_text",
+                        "message": color_message
+                    },
+                    "room": room_id,
+                    "receiver_id": data["user"]["id"],
+                }
             )
 
 
